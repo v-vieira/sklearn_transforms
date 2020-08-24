@@ -30,7 +30,7 @@ class Subs_zeros_lim10():
         return data
     
 # Criação das colunas de média em humanas e média em exatas
-class medias():
+class somas():
     def create(self, input_dataframe):
         #copia o dataframe
         data = input_dataframe.copy()
