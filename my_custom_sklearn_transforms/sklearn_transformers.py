@@ -1,4 +1,5 @@
 from sklearn.base import BaseEstimator, TransformerMixin
+import pandas as pd
 
 
 # All sklearn Transforms must have the `transform` and `fit` methods
@@ -28,9 +29,7 @@ class Subs_zeros_lim10():
         data = X.copy()
         # Retornamos um novo dataframe sem as colunas indesejadas
         for col in self.columns_norm:
-            select_col = data[col]
-            mask = select_col != 0
-            mean_no_zeros = float(select_col[mask].min())
+            mean_no_zeros = float(data.loc[data[col] != 0,[col]].min())
             data[col] = select_col.replace(0,mean_no_zeros)
         data['NOTA_GO'].values[data['NOTA_GO'] > 10] = 10
         return data
