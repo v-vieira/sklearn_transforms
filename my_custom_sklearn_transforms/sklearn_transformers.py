@@ -19,10 +19,14 @@ class DropColumns(BaseEstimator, TransformerMixin):
 class Subs_zeros_lim10():
     def __init__(self,columns_norm):
         self.columns_norm = columns_norm
-    def replace(self, input_dataframe):
-        #copia o dataframe
-        data = input_dataframe.copy()
-        #substitui
+        
+    def fit(self, X, y=None):
+        return self
+    
+    def transform(self, X):
+        # Primeiro realizamos a cópia do dataframe 'X' de entrada
+        data = X.copy()
+        # Retornamos um novo dataframe sem as colunas indesejadas
         for col in self.columns_norm:
             mean_no_zeros = float(data.loc[data[col] != 0,[col]].min())
             data[col] = data[col].replace(0,mean_no_zeros)
@@ -31,9 +35,12 @@ class Subs_zeros_lim10():
     
 # Criação das colunas de média em humanas e média em exatas
 class somas():
-    def create(self, input_dataframe):
-        #copia o dataframe
-        data = input_dataframe.copy()
+    def fit(self, X, y=None):
+        return self
+    
+    def transform(self, X):
+        # Primeiro realizamos a cópia do dataframe 'X' de entrada
+        data = X.copy()
         #criação das medias
         data['REP_HUM'] = data['REPROVACOES_DE'] + data['REPROVACOES_EM']
         data['REP_EXA'] = data['REPROVACOES_MF'] + data['REPROVACOES_GO']
