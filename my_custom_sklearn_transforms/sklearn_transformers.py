@@ -28,8 +28,10 @@ class Subs_zeros_lim10():
         data = X.copy()
         # Retornamos um novo dataframe sem as colunas indesejadas
         for col in self.columns_norm:
-            mean_no_zeros = float(data.loc[data[col] != 0,[col]].min())
-            data[col] = data[col].replace(0,mean_no_zeros)
+            select_col = data[col]
+            mask = select_col != 0
+            mean_no_zeros = float(select_col[mask].min())
+            data[col] = select_col.replace(0,mean_no_zeros)
         data['NOTA_GO'].values[data['NOTA_GO'] > 10] = 10
         return data
     
