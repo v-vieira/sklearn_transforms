@@ -17,7 +17,7 @@ class DropColumns(BaseEstimator, TransformerMixin):
         return data.drop(labels=self.columns, axis='columns')
 
 # Substituir as notas que são maior que 10 por 10
-class Subs_zeros_lim10():
+class Subs_zeros_lim10(BaseEstimator, TransformerMixin):
     def __init__(self,columns_norm):
         self.columns_norm = columns_norm
         
@@ -35,7 +35,7 @@ class Subs_zeros_lim10():
         return data
     
 # Criação das colunas de média em humanas e média em exatas
-class somas():
+class somas(BaseEstimator, TransformerMixin):
     def fit(self, X, y=None):
         return self
     
