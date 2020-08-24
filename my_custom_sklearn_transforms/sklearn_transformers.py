@@ -24,7 +24,7 @@ class Subs_zeros_lim10(BaseEstimator, TransformerMixin):
     def fit(self, X, y=None):
         return self
     
-    def transform(self, X):
+    def transform(self, X,y=None):
         # Primeiro realizamos a cópia do dataframe 'X' de entrada
         data = X.copy()
         # Retornamos um novo dataframe sem as colunas indesejadas
@@ -39,7 +39,7 @@ class somas(BaseEstimator, TransformerMixin):
     def fit(self, X, y=None):
         return self
     
-    def transform(self, X):
+    def transform(self, X,y=None):
         # Primeiro realizamos a cópia do dataframe 'X' de entrada
         data = X.copy()
         #criação das medias
